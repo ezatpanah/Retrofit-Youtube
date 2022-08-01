@@ -123,6 +123,7 @@
                 android:layout_width="115dp"
                 android:layout_height="160dp"
                 android:scaleType="fitXY"
+                android:background="@color/white"
                 app:shapeAppearanceOverlay="@style/RoundedImageView"
                 app:srcCompat="@drawable/poster_placeholder"
                 app:layout_constraintBottom_toBottomOf="parent"
