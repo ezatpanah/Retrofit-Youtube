@@ -1,9 +1,9 @@
 package com.ezatpanah.retrofit_youtube.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ezatpanah.retrofit_youtube.adapter.MoviesAdapter
 import com.ezatpanah.retrofit_youtube.api.ApiClient
@@ -40,18 +40,29 @@ class MainActivity : AppCompatActivity() {
                     Log.e("onFailure", "Err : ${response.code()}")
 
                     prgBarMovies.visibility = View.GONE
-                    if (response.isSuccessful) {
-                        response.body()?.let { itBody ->
-                            itBody.results.let { itData ->
-                                if (itData.isNotEmpty()) {
-                                    moviesAdapter.differ.submitList(itData)
-                                    //Recycler
-                                    rlMovies.apply {
-                                        layoutManager = LinearLayoutManager(this@MainActivity)
-                                        adapter = moviesAdapter
+                    when (response.code()) {
+                        in 200..299 -> {
+                            response.body()?.let { itBody ->
+                                itBody.results.let { itData ->
+                                    if (itData.isNotEmpty()) {
+                                        moviesAdapter.differ.submitList(itData)
+                                        //Recycler
+                                        rlMovies.apply {
+                                            layoutManager = LinearLayoutManager(this@MainActivity)
+                                            adapter = moviesAdapter
+                                        }
                                     }
                                 }
                             }
+                        }
+                        in 300..399 -> {
+                            Log.d("Response Code", " Redirection messages : ${response.code()}")
+                        }
+                        in 400..499 -> {
+                            Log.d("Response Code", " Client error responses : ${response.code()}")
+                        }
+                        in 500..599 -> {
+                            Log.d("Response Code", " Server error responses : ${response.code()}")
                         }
                     }
                 }
