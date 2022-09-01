@@ -37,11 +37,10 @@ class MainActivity : AppCompatActivity() {
             val callMoviesApi = api.getPopularMovie(1)
             callMoviesApi.enqueue(object : Callback<MoviesListResponse> {
                 override fun onResponse(call: Call<MoviesListResponse>, response: Response<MoviesListResponse>) {
-                    Log.e("onFailure", "Err : ${response.code()}")
-
                     prgBarMovies.visibility = View.GONE
                     when (response.code()) {
                         in 200..299 -> {
+                            Log.d("Response Code", " success messages : ${response.code()}")
                             response.body()?.let { itBody ->
                                 itBody.results.let { itData ->
                                     if (itData.isNotEmpty()) {
