@@ -8,3 +8,11 @@ YouTube Video :
 <a href="https://youtu.be/KAuifVDU9F4" target="_blank"><img alt="Ezatpanah Retrofit-Youtube" src="retrofit.jpg" width="60%"></a>
 <br>
 
+
+Medium's Article :
+<br>
+https://medium.com/@ezatpanah/getting-started-with-retrofit-beginner-in-depth-guide-3b91f509c0a2
+
+✨ Join Medium to read thousands of valuable stories ✨
+<br>
+https://medium.com/@ezatpanah/membership
